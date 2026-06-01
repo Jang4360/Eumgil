@@ -1,319 +1,209 @@
-<div align="center">
+# 👣 부산이음길
+### 부산 지역 이동 약자를 위한 무장애 길찾기 서비스
 
-# 부산이음길
-
-### Busan EumGil
-
-**부산 지역 이동 약자를 위한 무장애 길찾기 서비스**
+![Generic badge](https://img.shields.io/badge/SSAFY-14th-blue.svg)
+![Generic badge](https://img.shields.io/badge/Spring%20Boot-3.5-green.svg)
+![Generic badge](https://img.shields.io/badge/Android-Kotlin-7F52FF.svg)
+![Generic badge](https://img.shields.io/badge/GraphHopper-Routing-77B829.svg)
 
 <br>
 
-[![Android](https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=android&logoColor=white)](https://developer.android.com)
-[![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=flat-square&logo=kotlin&logoColor=white)](https://kotlinlang.org)
-[![Spring Boot](https://img.shields.io/badge/Spring_Boot_3-6DB33F?style=flat-square&logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
-[![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)](https://www.postgresql.org)
-[![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)](https://www.docker.com)
-[![Jenkins](https://img.shields.io/badge/Jenkins-D24939?style=flat-square&logo=jenkins&logoColor=white)](https://www.jenkins.io)
-[![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonaws&logoColor=white)](https://aws.amazon.com)
-
+<div align="center">
+  <img src="assets/readme/hero-main.png" width="60%">
+  <br><br>
+  <b>“부산의 복잡한 지형 위에서도, 이동 약자가 실제로 이동 가능한 길을 안내합니다.”</b> <br>
+  접근성 데이터, 음성 안내, 시민 제보를 결합한 무장애 길찾기 서비스
 </div>
 
 ---
 
-## 프로젝트 소개
+## 🚀 MVP 기능
 
-**부산이음길**은 부산 지역 이동 약자를 위한 **무장애 길찾기 모바일 서비스**입니다.
+### 1. 무장애 경로 탐색 및 음성 안내 (Accessible Routing & Guidance)
+사용자 유형과 접근성 데이터를 반영해 일반 최단 경로가 아닌, **실제 이동 가능한 경로**를 우선 안내합니다.
 
-부산은 언덕, 계단, 급경사, 단차가 많은 도시 구조를 가지고 있어 휠체어 이용자, 고령자, 유아차 동반 보호자, 시각장애인에게 일반 보행자용 길찾기 서비스가 그대로 통하지 않습니다.
+| 1. 목적지 설정 | 2. 무장애 경로 탐색 | 3. 경로 안내 |
+| :---: | :---: | :---: |
+| <img src="assets/readme/destination-search.png" height="300px"> | <img src="assets/readme/route-result.png" height="300px"> | <img src="assets/readme/navigation-guide.png" height="300px"> |
+| 출발지/목적지와 사용자 조건을 입력 | 접근성 정보를 반영한 경로 후보 제공 | 단계별 경로 안내와 음성 안내 제공 |
 
-부산이음길은 이런 문제를 해결하기 위해 다음을 목표로 합니다.
+<br>
 
-- 이동 약자 맞춤 경로 탐색
-- 경사, 계단, 엘리베이터, 점자블록 같은 접근성 정보 제공
-- 시민 참여형 장애물 제보
-- 부산 지역 중심의 무장애 이동 데이터 축적
+### 2. 접근성 지도 정보 및 즐겨찾기 (Accessibility Map & Bookmark)
+경로만 보여주는 것이 아니라, **장애인 화장실, 엘리베이터, 점자블록, 편의시설** 같은 접근성 정보를 지도에서 함께 제공합니다.
 
-### 핵심 사용자
+| 지도 홈 화면 | 접근성 시설 탐색 | 즐겨찾기 |
+| :---: | :---: | :---: |
+| <img src="assets/readme/home-map.png" height="300px"> | <img src="assets/readme/place-detail.png" height="300px"> | <img src="assets/readme/bookmark.png" height="300px"> |
+| 현재 위치 중심 지도 홈 | 주변 시설/장소 상세 정보 확인 | 자주 가는 목적지를 저장하고 재사용 |
 
-- 시각장애인
-- 휠체어 이용자
-- 고령자
-- 유아차 동반 보호자
-- 일시적 이동 불편자
+<br>
 
-### 핵심 기능
+### 3. 장애물 제보 및 우회 경로 반영 (Hazard Report & Reroute)
+사용자가 공사 구간, 점자블록 훼손, 보행 장애물 등을 제보하면, 운영자 검토 후 경로 탐색에 반영할 수 있습니다.
 
-- **무장애 경로 탐색**: 경사로, 엘리베이터, 자동문 중심 경로 우선
-- **접근성 지도 정보 제공**: 장애인 화장실, 충전소, 점자블록, 베리어프리 시설 표시
-- **인증 기반 사용 흐름**: 소셜 로그인, 사용자 유형, 온보딩 상태에 따라 앱 진입 분기
-- **TTS 기반 길안내**: 시각장애인 사용자를 고려한 음성 안내
-- **장애물 제보**: 공사, 점자블록 손상, 보행 장애물 제보
-
-### 핵심 흐름
-
-```text
-현재 위치 / 목적지 입력
-  -> 접근성 데이터 조회
-  -> 무장애 경로 계산
-  -> 지도 표시 + 음성 안내
-  -> 사용자 이동 / 제보 데이터 축적
-```
+| 1. 제보 등록 | 2. 관리자 검토 | 3. 우회 경로 반영 |
+| :---: | :---: | :---: |
+| <img src="assets/readme/report-create.png" height="300px"> | <img src="assets/readme/admin-review.png" height="300px"> | <img src="assets/readme/reroute-result.png" height="300px"> |
+| 앱에서 장애물 사진/위치 제보 | 관리자 화면에서 제보와 도로 속성 검토 | 위험 구간을 피한 우회 경로 재탐색 |
 
 ---
 
-## 주요 문서
+## 📱 User Flow Detail
 
-- PRD: [Docs/PRD/2026-04-09_부산이음길_PRD.md](Docs/PRD/2026-04-09_부산이음길_PRD.md)
-- 프로젝트 기획서: [Docs/기획/2026-04-10 최종_프로젝트_기획서.md](<Docs/기획/2026-04-10 최종_프로젝트_기획서.md>)
-- Frontend README: [FE/README.md](FE/README.md)
-- 인프라 설계안: [Docs/인프라/2026-04-20_AWS_인프라_설계안.md](<Docs/인프라/2026-04-20_AWS_인프라_설계안.md>)
-- 인프라 현재 상태: [Docs/인프라/2026-05-20_인프라_현재상태_및_운영_기준.md](Docs/인프라/2026-05-20_인프라_현재상태_및_운영_기준.md)
-- INF 기준: [INF/README.md](INF/README.md)
+### 👤 사용자 진입 및 모드 설정
+온보딩과 사용자 유형 설정을 통해, 시각장애인·휠체어 사용자·고령자 등에게 맞는 안내 흐름을 제공합니다.
 
+| 온보딩 | 사용자 유형 선택 | 홈 진입 |
+| :---: | :---: | :---: |
+| <img src="assets/readme/onboarding.png" width="400px"> | <img src="assets/readme/user-type.png" width="400px"> | <img src="assets/readme/home-map.png" width="400px"> |
 
-## 기술 스택
+### 🗺️ 경로 탐색 및 도착 흐름
+경로 탐색 이후에는 지도, 안내 문구, 음성 정보를 조합해 실제 이동에 필요한 정보를 제공합니다.
 
-| 분류 | 기술 |
-|---|---|
-| Mobile App | Kotlin, Android, Jetpack Compose |
-| Backend API | Spring Boot 3, Spring Data JPA |
-| Data / AI | Python |
-| Route Engine | GraphHopper |
-| DB | PostgreSQL/PostGIS |
-| Cache | Redis / ElastiCache |
-| Infra | AWS, Docker, Docker Compose |
-| CI/CD | Jenkins |
-| Monitoring | PLG, CloudWatch |
+| 목적지 설정 | 경로 안내 | 목적지 도착 |
+| :---: | :---: | :---: |
+| <img src="assets/readme/destination-search.png" width="400px"> | <img src="assets/readme/navigation-guide.png" width="400px"> | <img src="assets/readme/arrival.png" width="400px"> |
 
-[E102_기술스택](Docs/img/E102_기술스택.jpg)
+### 🛡️ 제보 및 운영자 반영 흐름
+사용자 제보는 단순 저장에서 끝나지 않고, 관리자 검토와 경로 반영 워크플로까지 이어집니다.
+
+| 제보 작성 | 관리자 지도 검토 | 반영 후 운영 |
+| :---: | :---: | :---: |
+| <img src="assets/readme/report-create.png" width="400px"> | <img src="assets/readme/admin-map.png" width="400px"> | <img src="assets/readme/admin-route-apply.png" width="400px"> |
+
 ---
 
-## 저장소 구조
+## 🧠 핵심 기술 (GraphHopper + Accessibility Data)
 
-```text
+GraphHopper 기반 라우팅 엔진에 접근성 속성 데이터를 결합해, 단순 최단 경로가 아니라 **이동 약자 관점에서 안전하고 실제로 이동 가능한 경로**를 계산합니다.
+
+| Input (Route Request) | Output (Accessible Route) |
+| :---: | :---: |
+| <img src="assets/readme/route-input.png" height="400px"> | <img src="assets/readme/route-output.png" height="400px"> |
+
+---
+
+## 🛠 기술 스택 (Tech Stack)
+
+### Architecture
+![System Architecture](assets/readme/architecture.png)
+
+### Detail
+
+| 분류 | 기술 스택 | 비고 |
+|:---:|:---|:---|
+| **Frontend** | Kotlin, Android, Jetpack Compose, Material 3 | Android App |
+| **Backend** | Java 21, Spring Boot 3.5, Spring Security, JPA | REST API |
+| **Routing** | GraphHopper, PostGIS | 무장애 경로 계산 |
+| **Data / AI** | Python | 음성/실험 코드 및 데이터 처리 |
+| **Database** | PostgreSQL 16, Redis | Main DB / Cache |
+| **Map / External** | Kakao Map, Kakao Local API, ODsay, Busan BIMS | 지도 / 장소 / 대중교통 |
+| **Infra** | AWS EC2, Docker, Nginx, Jenkins, MinIO | 배포 / 운영 |
+| **Monitoring** | Prometheus, Grafana, Loki, CloudWatch | 관측성 / 로그 |
+
+---
+
+## 🤖 기술 개요
+
+※ 본 README에서는 전체 구현 중 핵심 개념만 설명합니다.
+
+- **GraphHopper 기반 프로필 라우팅**
+  - 사용자 유형별 보행 프로필 적용
+  - SAFE / SHORTEST 후보 경로 조회
+
+- **접근성 속성 기반 경로 보정**
+  - 경사, 계단, 점자블록, 폭, 노면 정보 반영
+  - 이동 약자 관점의 실제 이동 가능성 중심 탐색
+
+- **TTS / 음성 안내**
+  - 시각장애인을 고려한 단계별 음성 안내
+  - 앱 사용 흐름에서 접근성 강화
+
+- **Hazard Report 기반 재탐색**
+  - 장애물 제보 지점을 회피 영역으로 반영
+  - 기존 경로를 우회 경로로 재구성
+
+---
+
+## 📂 프로젝트 구조
+
+```bash
 S14P31E102/
-├── FE/                    # Android 앱, 상세는 FE/README.md 참고
-├── BE/                    # Spring Boot API
-├── AI/                    # Python 실험 코드, 데이터 가공, 인식 관련 작업
-├── Docs/                  # 기획, PRD, API, 인프라, 회의록 등 설명 문서
-├── INF/                   # 운영 설정 자산
+├── FE/                    # Android 앱
+├── BE/                    # Spring Boot API 서버
+├── AI/                    # Python 실험 코드, 데이터 처리, 음성/분석 관련 작업
+├── ADMIN/                 # 관리자 웹
+├── INF/                   # 인프라 설정 자산
+├── Docs/                  # PRD, 기획, 인프라, API, 회의록
 ├── scripts/               # make에서 호출하는 자동화 스크립트
+├── docker-compose.local.yml
+├── docker-compose.dev.yml
+├── docker-compose.prod.yml
 ├── Makefile
 └── README.md
 ```
+## 빠른 시작
 
-### 디렉토리 책임
-
-- `FE/`
-  - Android 클라이언트 코드
-- `BE/`
-  - Spring Boot 서버 코드
-- `AI/`
-  - Python 기반 실험/검증/데이터 처리 코드
-- `Docs/`
-  - 설명 문서, 설계안, runbook, 운영 가이드
-- `INF/`
-  - 운영 설정 자산
-  - AWS, Jenkins, monitoring 관련 기준 파일
-- `scripts/`
-  - `make`가 호출하는 스크립트
-  - 배포, 초기화, QA, GIS 작업 자동화
-
-### 운영 파일 배치 원칙
-
-- 루트 디렉토리는 실행 진입점으로 사용한다.
-- 앞으로 환경별 compose 파일은 루트에서 관리한다.
-  - `docker-compose.local.yml`
-  - `docker-compose.dev.yml`
-  - `docker-compose.prod.yml`
-- 환경 변수 파일도 루트에서 관리한다.
-  - `.env.local`
-  - `.env.dev`
-  - `.env.prod`
-- 환경 변수 key 목록과 템플릿은 노션에서 관리하며, 저장소에는 env example 파일을 두지 않는다.
-- `INF/`에는 설명 문서보다 **운영 설정 자산**을 둔다.
-- 정식 설계안, 장애 대응 절차, 운영 설명은 `Docs/인프라`에서 관리한다.
-
-
----
-
-## 현재 아키텍처 결정
-
-이 저장소는 현재 **EC2 2대 운영 구조**를 기준으로 인프라 계약을 맞춰가는 단계입니다.
-
-2026-05-20 실서버 확인 기준 최신 런타임 스냅샷은 [Docs/인프라/2026-05-20_인프라_현재상태_및_운영_기준.md](Docs/인프라/2026-05-20_인프라_현재상태_및_운영_기준.md)를 기준으로 합니다.
-
-### 현재 운영 기준
-
-- `S1 = dev + Jenkins + build runner + 운영도구`
-- `S2 = primary prod runtime`
-- `RDS = PostgreSQL managed service`
-- `ElastiCache = 필요 시 운영`
-- EC2 shell 접속은 `SSH`를 기본으로 사용하되, 관리자 고정 IP에서만 허용
-- `RDS`, `ElastiCache` 같은 private managed resource 접근은 `SSM Session Manager` 포트 포워딩 기준
-- `SSM Session Manager`는 SSH 장애 시 복구 채널로도 유지
-- 1차 알람은 AWS 관리 평면 기준으로 운영
-- 보조 모니터링은 `PLG`를 사용
-- 서비스 API와 필요한 관리자 UI는 각 서버의 `Nginx` `80/443` host-based routing으로 접근한다.
-- EC2에서 외부에 직접 여는 포트는 `80/443`과 `22`만 두며, `22`는 관리자 고정 IP에서만 허용한다.
-
-### 서버 역할
-
-- `S1`
-  - `dev` 상시 실행
-  - `Jenkins` 상시 실행
-  - `GraphHopper runtime`은 dev serve 용도로 실행
-  - `Grafana`, `Portainer`, `SonarQube`, `PLG` 운영도구 실행
-- `S2`
-  - `primary prod` 실행
-  - 운영 WAS, AI Flask intent server, 관리자 웹 실행
-  - prod GraphHopper runtime은 S2 내부 `blue/green` slot으로 실행
-
-### 운영 원칙
-
-- 현재 운영은 **2대 기반 현실형 운영안**이다.
-- 현재는 `S2 primary prod + S1 dev/Jenkins/운영도구` 구조이며, ALB 기반 Blue/Green은 같은 VPC 또는 private routing 정리 이후 확장 옵션으로 둔다.
-- 현재 prod blue/green은 EC2 서버 단위가 아니라 S2 내부 GraphHopper `blue/green` runtime slot 전환을 의미한다.
-- prod와 dev의 역할 경계는 문서와 설정에서 명확해야 한다.
-- GraphHopper의 무거운 build/import 작업은 prod 서버에서 직접 돌리지 않는다.
-- Jenkins, Grafana, SonarQube, PLG 같은 관리자 UI는 원 포트를 공개하지 않고 `Nginx`의 `443` host routing으로만 접근한다.
-- Portainer는 외부 공개하지 않고 `make portainer-tunnel` 기반 SSH 터널로만 접근한다.
-- 관리자 UI 라우팅은 OAuth, source IP 제한, VPN, SSH 터널 같은 접근 제한을 전제로 한다.
-- 관리자 UI의 웹 접근은 초기 편의 운영안이며, 운영 안정화 후에는 VPN 또는 SSM 터널 기반 접근으로 축소할 수 있다.
-
-### 현재 저장소 상태
-
-- 현재 저장소는 최종 운영 구조를 향해 정리 중이다.
-- 일부 설정 자산과 디렉토리 구조는 먼저 잡고, 실제 런타임 파일은 이후 맞춰갈 수 있다.
-- 따라서 이 README는 "완성된 배포 가이드"보다 **현재 기준 운영 계약과 저장소 기준**을 설명하는 문서로 읽는 것이 맞다.
-
----
-
-## 시작하기
-
-### 1. 클론
+### Docker Compose로 실행
 
 ```bash
-git clone <repository-url>
-cd S14P31E102
-```
-
-### 2. 초기 세팅
-
-```bash
+# 1. Git/Jira 및 로컬 개발 보조 설정
 make init
+
+# 2. 루트 환경 변수 파일 준비
+# .env.local 또는 .env.dev 파일을 팀 내부 기준에 맞게 준비
+
+# 3. 로컬 스택 실행
+make local-up
 ```
 
-정상 설치되면 `세팅 완료`가 출력된다.
+### 접속 정보
 
-### 3. 환경 변수 준비
+| 서비스 | URL |
+|--------|-----|
+| Backend API | http://localhost:8080 |
+| AI Server | http://localhost:5000 |
+| GraphHopper | http://localhost:8989 |
+| MinIO API | http://localhost:9000 |
+| MinIO Console | http://localhost:9001 |
 
-현재 기준 환경 변수 파일은 루트에서 관리한다.
-
-- 개발용: `.env.dev`
-- 운영용: `.env.prod`
-
-필요 시 노션의 env 기준을 확인해 환경별 파일을 준비한다.
-
-### 4. 문서 먼저 확인
-
-구조를 빠르게 이해하려면 아래 순서가 좋다.
-
-1. `README.md`
-2. `Docs/PRD`
-3. `Docs/인프라`
-4. `INF/README.md`
-
----
-
-## Git / Jira 컨벤션
-
-### 커밋 메시지
-
-```text
-{gitmoji} {type}[#{이슈번호}]: {내용}
-```
-
-예시:
+### 유용한 명령어
 
 ```bash
-✨ Feat[#31]: 로그인 API 추가
-🐛 Fix[#32]: RDS 커넥션 타임아웃 수정
-♻️ Refactor[#33]: 경로 탐색 서비스 구조 정리
-🔧 Chore[#41]: docker-compose 설정 정리
-📝 Docs[#42]: 인프라 설계안 갱신
+make local-logs
+make local-down
+make be-local-up
+make ai-local-up
 ```
 
-`make init` 실행 후 `[#31]`은 자동으로 `[S14P31E102-31]`로 변환되어 Jira에 연결된다.
+## 상세 문서
 
-브랜치에 Jira ticket이 이미 포함되어 있으면 아래 형식도 자동 보정된다.
+각 파트별 상세 내용은 하위 폴더의 README 또는 문서를 참고하세요.
 
-```bash
-git commit -m "✨ Feat: 로그인 API 추가"
-```
+| 문서 | 경로 |
+|------|------|
+| 루트 프로젝트 개요 | [README.md](README.md) |
+| 백엔드 | [BE/README.md](BE/README.md) |
+| 프론트엔드 | [FE/README.md](FE/README.md) |
+| 인프라 | [INF/README.md](INF/README.md) |
+| PRD | [Docs/PRD/2026-04-09_부산이음길_PRD.md](Docs/PRD/2026-04-09_부산이음길_PRD.md) |
 
-예시:
+## 포팅 매뉴얼
 
-```text
-✨ Feat[S14P31E102-31]: 로그인 API 추가
-```
+`exec/` 폴더에 배포 및 운영 관련 문서가 있습니다.
 
-### 타입
+- [포팅 매뉴얼](exec/부산이음길__포팅매뉴얼.md)
 
-| gitmoji | type | 용도 |
-|---|---|---|
-| `✨` | `Feat` | 새 기능 |
-| `🐛` | `Fix` | 버그 수정 |
-| `🚑` | `Hotfix` | 긴급 수정 |
-| `♻️` | `Refactor` | 리팩토링 |
-| `🔧` | `Chore` | 설정, 기타 |
-| `✅` | `Test` | 테스트 |
-| `📝` | `Docs` | 문서 |
+## 팀 E102
 
-### 브랜치 컨벤션
+SSAFY 14기 공통 프로젝트
 
-브랜치는 `git br`로 생성한다.
-
-```text
-feat/{설명}-{이슈번호}      예: feat/server-init-31
-fix/{설명}-{이슈번호}       예: fix/rds-timeout-32
-be/feat/{설명}-{이슈번호}   예: be/feat/login-31
-fe/fix/{설명}-{이슈번호}    예: fe/fix/header-32
-```
-
-예:
-
-```bash
-git br be/feat/login-31
-```
-
-실제 생성 결과:
-
-```text
-be/feat/login-S14P31E102-31
-```
-
-브랜치 규칙은 마지막이 반드시 `-숫자`여야 한다.
-
-비허용 예:
-
-```bash
-git br be/feat/login-31-ryuwon
-git br be/feat/login-S14P31E102-31-ryuwon
-```
-
-### MR 컨벤션
-
-- 제목에 Jira 이슈 키 포함: `S14P31E102-32 Prod AWS 서비스 연결`
-- 본문에 `Closes S14P31E102-32` 포함 시 머지 후 Jira 이슈 자동 완료
-
-### 자주 쓰는 명령
-
-```bash
-make init
-git br be/feat/login-31
-git add .
-git commit -m "✨ Feat[#31]: 로그인 API 추가"
-make test-git-jira
-```
+| 이름 | 역할 | 담당 |
+|------|------|------|
+| 팀원 1 | Frontend | Android 앱 |
+| 팀원 2 | Backend | API / 데이터 |
+| 팀원 3 | Infra | Docker / AWS / Jenkins |
+| 팀원 4 | AI | 음성/분석 및 데이터 |
+| 팀원 5 | PM / Design | 기획 / UX |
+| 팀원 6 | Full Stack | 제보 / 관리자 / 연동 |
